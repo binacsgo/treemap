@@ -42,7 +42,7 @@ func (tm *TreeMap) Delete(key Keytype) {
 func (tm *TreeMap) Get(key Keytype) interface{} {
 	tm.mutex.Lock()
 	defer tm.mutex.Unlock()
-	tm.OrderMap.Find(key)
+	return tm.OrderMap.Find(key)
 }
 
 // Empty empty or not
@@ -52,12 +52,12 @@ func (tm *TreeMap) Empty() bool {
 	return tm.OrderMap.Empty()
 }
 
-// Min return the top
-//func (tm *TreeMap) Min() *node {
-//	tm.mutex.RLock()
-//	defer tm.mutex.RUnlock()
-//	return tm.OrderMap.Iterator()
-//}
+// Min return the min
+func (tm *TreeMap) Min() *Node {
+	tm.mutex.RLock()
+	defer tm.mutex.RUnlock()
+	return tm.OrderMap.Iterator()
+}
 
 // Size return the size of tree map
 func (tm *TreeMap) Size() int {
